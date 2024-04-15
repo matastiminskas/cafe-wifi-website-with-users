@@ -1,0 +1,74 @@
+/* base html */
+.navbar{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#content {
+  margin: 5rem 15% 0;
+}
+
+
+#footer {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+/* index.html */
+.table-section{
+  margin-top: 1rem;
+}
+
+/* cafe html */
+.cafe-actions-column{
+  text-align: right;
+}
+
+.cafe-table{
+  margin-top: 1rem;
+}
+
+.img-map-section{
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.img-map-section .col-lg-6{
+  margin-top: 1rem;
+}
+
+.google-maps {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+}
+
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* form html */
+
+.form-heading {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.my-form {
+  max-width: 300px;
+  margin: 1rem auto;
+}
+
+.my-form .form-label {
+  padding-left: 5px;
+}
+
+.my-form .btn {
+  display: block;
+  margin: 1.5rem auto 0;
+}

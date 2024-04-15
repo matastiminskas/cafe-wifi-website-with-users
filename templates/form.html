@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+  <h1 class="form-heading">{{ heading }}</h1>
+
+  <div class="my-form">
+    {% from 'bootstrap5/utils.html' import render_messages %}
+    {{ render_messages() }}
+
+    {% from 'bootstrap5/form.html' import render_form %}
+    {{ render_form(form, action=action, form_type='basic', button_map={'submit_delete': 'danger'}) }}
+  </div>
+
+{% endblock %}

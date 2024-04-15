@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}Cafe and WiFi website{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Cafe and WiFi</a>
+        <div class="navbar-expand" id="navbarNav">
+          <ul class="navbar-nav">
+            {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link active" href="{{ url_for('logout') }}">Logout</a>
+            <!-- dropdown menu -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                  <span class="dropdown-item"> Hello, {{ current_user.name }}</span>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{ url_for('edit_profile') }}">Edit profile</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('add_cafe') }}">Add cafe</a></li>
+              </ul>
+            </li>
+
+            {% else %}
+            <a class="nav-item nav-link active" href="{{ url_for('login') }}">Login</a>
+            <a class="nav-item nav-link active" href="{{ url_for('signup') }}">Signup</a>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2024 by Matas Timinskas.
+      {% endblock %}
+    </div>
+    {{ bootstrap.load_js() }}
+  </body>
+</html>

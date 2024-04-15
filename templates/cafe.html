@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+  <div class="container_fluid">
+    <div class="row justify-content-between">
+      <div class="col">
+        <h1 class="cafe-heading">{{ cafe.name }}</h1>
+      </div>
+    </div
+  </div>
+
+
+  <div class="container-fluid cafe-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Location</th>
+          <th scope="col">Power</th>
+          <th scope="col">Wifi</th>
+          <th scope="col">Calling</th>
+          <th scope="col">Toilet</th>
+          <th scope="col">Seats</th>
+          <th scope="col">Coffee Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ cafe.location }}</td>
+          <td>{% if cafe.has_sockets %} ✔ {% endif %}</td>
+          <td>{% if cafe.has_wifi %} ✔ {% endif %}</td>
+          <td>{% if cafe.can_take_calls %} ✔ {% endif %}</td>
+          <td>{% if cafe.has_toilet %} ✔ {% endif %}</td>
+          <td>{{ cafe.seats }}</td>
+          <td>{{ cafe.coffee_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="cafe-maps-url">Maps URL: <a href="{{ cafe.map_url }}">{{ cafe.map_url }}</a></p>
+
+  {% if current_user.is_authenticated %}
+  <div class="text-end">
+    <a href="{{ url_for('edit_cafe', cafe_id=cafe.id) }}" class="btn btn-dark">Edit</a>
+    <a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}" class="btn btn-danger">Delete</a>
+  </div>
+  {% endif %}
+
+  <div class="container_fluid img-map-section">
+    <div class="row">
+      <div class="col-lg-6">
+        <img src="{{ cafe.img_url }}" alt="cafe image" class="img-fluid cafe-image">
+      </div>
+      <div class="col-lg-6">
+        <div class="google-maps">
+          <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key={{ MAPS_API_KEY }}&q={{ search_query }}"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
